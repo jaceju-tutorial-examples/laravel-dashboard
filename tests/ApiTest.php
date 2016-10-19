@@ -1,10 +1,12 @@
 <?php
 
+use App\Events\BatteryStateUpdated;
 use App\Jobs\UpdateBatteryState;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Facades\Event;
 
 class ApiTest extends TestCase
 {
@@ -41,6 +43,25 @@ class ApiTest extends TestCase
 
         Queue::assertPushed(UpdateBatteryState::class, function ($job) use ($payload) {
             return $job->payload === $payload;
+        });
+    }
+
+    /**
+     * @test
+     */
+    public function 用_post_呼叫更新電池狀態的_api_後應觸發_BatteryStateUpdated_事件()
+    {
+        Event::fake();
+        $payload = [
+            'percent' => 23,
+            'charging' => true,
+        ];
+
+        $this->post('/api/battery-state?api_token=' . $this->user->api_token, $payload, ['Accept' => 'application/json'])
+            ->assertResponseOk();
+
+        Event::assertFired(BatteryStateUpdated::class, function ($event) use ($payload) {
+            return $event->payload === $payload;
         });
     }
 }
