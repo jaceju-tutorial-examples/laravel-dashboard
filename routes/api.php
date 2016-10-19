@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\UpdateBatteryState;
 use Illuminate\Http\Request;
 
 /*
@@ -12,3 +13,8 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('/battery-state', function (Request $request) {
+    $payload = $request->except('api_token');
+    dispatch(app(UpdateBatteryState::class, [$payload]));
+})->middleware('auth:api');
