@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Echo from 'laravel-echo';
 import SocketIO from 'socket.io-client';
+import BatteryState from './components/BatteryState.vue';
 import CurrentTime from './components/CurrentTime.vue';
 
 window.io = SocketIO;
@@ -13,6 +14,7 @@ window.Echo = new Echo({
 new Vue({
   el: '#app',
   components: {
+    BatteryState,
     CurrentTime
   }
 });
