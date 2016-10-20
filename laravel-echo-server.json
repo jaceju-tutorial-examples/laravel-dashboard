@@ -1,0 +1,21 @@
+{
+	"appKey": "pmg4q9gmedc5mm900en9uliuk20g8td4gcin95jsplstl35om5d33cu6b0f4",
+	"authEndpoint": "/broadcasting/auth",
+	"authHost": "http://example-dashboard.dev",
+	"database": "redis",
+	"databaseConfig": {
+		"redis": {},
+		"sqlite": {
+			"databasePath": "/database/laravel-echo-server.sqlite"
+		}
+	},
+	"devMode": false,
+	"host": "example-dashboard.dev",
+	"port": "6001",
+	"protocol": "http",
+	"referrers": [],
+	"sslCertPath": "",
+	"sslKeyPath": "",
+	"verifyAuthPath": true,
+	"verifyAuthServer": false
+}
