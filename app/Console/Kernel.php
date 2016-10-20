@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\EmulateBatteryState::class
+        Commands\EmulateCronApi::class,
+        Commands\EmulateBatteryState::class,
     ];
 
     /**
