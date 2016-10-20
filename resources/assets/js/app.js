@@ -1,5 +1,9 @@
 import Vue from 'vue';
+import CurrentTime from './components/CurrentTime.vue';
 
 new Vue({
-  el: '#app'
+  el: '#app',
+  components: {
+    CurrentTime
+  }
 });
