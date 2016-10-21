@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Echo from 'laravel-echo';
 import SocketIO from 'socket.io-client';
+import GoogleCalendar from './components/GoogleCalendar.vue';
 import BatteryState from './components/BatteryState.vue';
 import CurrentTime from './components/CurrentTime.vue';
 
@@ -14,6 +15,7 @@ window.Echo = new Echo({
 new Vue({
   el: '#app',
   components: {
+    GoogleCalendar,
     BatteryState,
     CurrentTime
   }
