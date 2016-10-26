@@ -1,5 +1,7 @@
 <?php
 
+use AspectMock\Kernel;
+
 define('LARAVEL_START', microtime(true));
 
 /*
@@ -15,6 +17,16 @@ define('LARAVEL_START', microtime(true));
 */
 
 require __DIR__.'/../vendor/autoload.php';
+
+$kernel = Kernel::getInstance();
+$kernel->init([
+    'debug' => true,
+    'cacheDir' => __DIR__ . '/../bootstrap/cache/mock',
+    'includePaths' => [
+        __DIR__.'/../vendor/spatie',
+        __DIR__.'/../app',
+    ]
+]);
 
 /*
 |--------------------------------------------------------------------------
