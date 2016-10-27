@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\CodeCoverageCreated;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -32,6 +33,6 @@ class CreateCodeCoverage implements ShouldQueue
      */
     public function handle()
     {
-        //
+        event(app(CodeCoverageCreated::class, [$this->payload]));
     }
 }
