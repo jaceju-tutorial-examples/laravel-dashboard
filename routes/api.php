@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\CreateCodeCoverage;
 use App\Jobs\UpdateBatteryState;
 use Illuminate\Http\Request;
 
@@ -17,4 +18,9 @@ use Illuminate\Http\Request;
 Route::post('/battery-state', function (Request $request) {
     $payload = $request->except('api_token');
     dispatch(app(UpdateBatteryState::class, [$payload]));
+})->middleware('auth:api');
+
+Route::post('/code-coverage', function (Request $request) {
+    $payload = $request->except('api_token');
+    dispatch(app(CreateCodeCoverage::class, [$payload]));
 })->middleware('auth:api');

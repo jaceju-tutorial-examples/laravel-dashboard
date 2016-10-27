@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\BatteryStateUpdated;
+use App\Jobs\CreateCodeCoverage;
 use App\Jobs\UpdateBatteryState;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -62,6 +63,25 @@ class ApiTest extends TestCase
 
         Event::assertFired(BatteryStateUpdated::class, function ($event) use ($payload) {
             return $event->payload === $payload;
+        });
+    }
+
+    /**
+     * @test
+     */
+    public function 用_post_呼叫建立測試涵蓋率的_api_後應建立_CreateCodeCoverage_的工作佇列()
+    {
+        Queue::fake();
+        $payload = [
+            'project' => 'Project 1',
+            'coverage' => 87.0,
+        ];
+
+        $this->post('/api/code-coverage?api_token=' . $this->user->api_token, $payload, ['Accept' => 'application/json'])
+            ->assertResponseOk();
+
+        Queue::assertPushed(CreateCodeCoverage::class, function ($job) use ($payload) {
+            return $job->payload === $payload;
         });
     }
 }
