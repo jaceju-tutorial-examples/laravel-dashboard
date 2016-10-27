@@ -31,6 +31,7 @@ class EmulateCronApi extends Command
     {
         while (true) {
             Artisan::call('emulate:battery-state');
+            Artisan::call('emulate:code-coverage');
             sleep(3);
         }
         return null;
