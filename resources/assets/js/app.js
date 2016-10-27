@@ -7,6 +7,7 @@ import SocketIO from 'socket.io-client';
 import GoogleCalendar from './components/GoogleCalendar.vue';
 import BatteryState from './components/BatteryState.vue';
 import CurrentTime from './components/CurrentTime.vue';
+import CodeCoverage from './components/CodeCoverage.vue';
 
 Vue.use(VueHighcharts, { Highcharts });
 
@@ -22,6 +23,7 @@ new Vue({
   components: {
     GoogleCalendar,
     BatteryState,
-    CurrentTime
+    CurrentTime,
+    CodeCoverage
   }
 });
