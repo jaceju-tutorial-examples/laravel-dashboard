@@ -1,27 +1,53 @@
-# Laravel PHP Framework
+# Laravel Dashboard 範例
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+簡報： [使用 Laravel 與 Vue.js 打造即時資訊看板](https://goo.gl/4tIOa1)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+## 需求
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+* PHP 7
+* Redis 3.x
+* Node.js 5.x
+* Facebook Yarn 0.x
+* Laravel Valet 1.x
+* 任一類型 Laravel 支援的資料庫系統
 
-## Official Documentation
+## 安裝
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+```bash
+$ git clone https://github.com/jaceju-tutorial-examples/laravel-dashboard.git example-dashboard
+$ cd example-dashboard
+$ composer install
+$ yarn install
+$ valet link
+$ cp .env .env.example
+# 編輯 .env 以符合你的環境
+$ php artisan migrate
+$ gulp
+```
 
-## Contributing
+## 新增測試使用者
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+```
+$ php artisan tinker
+```
 
-## Security Vulnerabilities
+然後建立測試用帳號：
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+```
+>>> factory(App\User::class)->create([
+  'email' => 'user@example.com',
+  'password' => bcrypt('123456'),
+]);
+```
+
+## 執行
+
+```
+$ ./testing.sh start
+$ open http://example-dashboard.dev
+# 帳號密碼即 user@example.com / 123456
+```
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+MIT
