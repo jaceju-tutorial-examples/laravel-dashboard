@@ -1,9 +1,14 @@
 import Vue from 'vue';
+import VueHighcharts from 'vue-highcharts';
+import Highcharts from 'highcharts/highcharts';
+
 import Echo from 'laravel-echo';
 import SocketIO from 'socket.io-client';
 import GoogleCalendar from './components/GoogleCalendar.vue';
 import BatteryState from './components/BatteryState.vue';
 import CurrentTime from './components/CurrentTime.vue';
+
+Vue.use(VueHighcharts, { Highcharts });
 
 window.io = SocketIO;
 
